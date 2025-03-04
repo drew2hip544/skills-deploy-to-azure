@@ -23,13 +23,13 @@ jobs:
   # Get the current step to only run the main job when the learner is on the same step.
   get_current_step:
     name: Check current step number
-    runs-on: self-hosted
+    runs-on: test
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - id: get_step
         run: |
-          cat test.txt
+          cat /home/worker2/test.txt
           echo "current_step=$(cat ./.github/steps/-step.txt)" >> $GITHUB_OUTPUT
     outputs:
       current_step: ${{ steps.get_step.outputs.current_step }}
